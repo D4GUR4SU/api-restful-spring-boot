@@ -19,7 +19,7 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
+	private Role role;
 	private List<Request> requests = new ArrayList<>();
 	private List<RequestStage> stages = new ArrayList<>();
-	private Role role;
 }
