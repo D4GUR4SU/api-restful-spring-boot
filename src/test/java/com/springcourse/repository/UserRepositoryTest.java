@@ -18,7 +18,6 @@ public class UserRepositoryTest {
 	@Autowired 
 	private UserRepository userRepository;
 	
-	
 	@Test
 	public void saveTest() {
 		User user = new User(null, "Douglas", "douglas@email.com", "1234", Role.ADMINISTRATOR, null, null);

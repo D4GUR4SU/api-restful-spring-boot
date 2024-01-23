@@ -2,6 +2,7 @@ package com.springcourse.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import com.springcourse.enums.RequestState;
 
@@ -40,7 +41,7 @@ public class Request implements Serializable {
 	@Column(columnDefinition = "text")
 	private String description;
 
-	@Column(name = "creation_date", nullable = false)
+	@Column(name = "creation_date", nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
@@ -51,4 +52,7 @@ public class Request implements Serializable {
 	@Column(length = 12, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private RequestState state;
+	
+	private List<RequestStage> stages;
+	
 }
