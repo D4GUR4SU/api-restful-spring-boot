@@ -1,7 +1,9 @@
 package com.springcourse.resource;
 
 import com.springcourse.domain.Request;
+import com.springcourse.domain.RequestStage;
 import com.springcourse.service.RequestService;
+import com.springcourse.service.RequestStageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,13 @@ import java.util.List;
 public class RequestResource {
 
     private final RequestService requestService;
+    private final RequestStageService requestStageService;
 
     @Autowired
-    public RequestResource(RequestService requestService) {
+    public RequestResource(RequestService requestService,
+                           RequestStageService requestStageService) {
         this.requestService = requestService;
+        this.requestStageService = requestStageService;
     }
 
     @PostMapping
@@ -27,14 +32,14 @@ public class RequestResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Request> update(@PathVariable("id") Long id, @RequestBody Request request) {
+    public ResponseEntity<Request> update(@PathVariable(name = "id") Long id, @RequestBody Request request) {
         request.setId(id);
         Request updatedREquest = requestService.update(request);
         return ResponseEntity.ok(updatedREquest);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Request> getById(@PathVariable("id") Long id) {
+    public ResponseEntity<Request> getById(@PathVariable(name = "id") Long id) {
         Request request = requestService.getById(id);
         return ResponseEntity.ok(request);
     }
@@ -43,5 +48,11 @@ public class RequestResource {
     public ResponseEntity<List<Request>> listAll() {
         List<Request> requests = requestService.listAll();
         return ResponseEntity.ok(requests);
+    }
+
+    @GetMapping("/{id}/request-stages")
+    public ResponseEntity<List<RequestStage>> listAllStagesById(@PathVariable(name = "id") Long id) {
+        List<RequestStage> request = requestStageService.listAllByRequestId(id);
+        return ResponseEntity.ok(request);
     }
 }

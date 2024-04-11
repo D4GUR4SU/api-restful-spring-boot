@@ -32,14 +32,14 @@ public class UserResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> update(@PathVariable("id") Long id, @RequestBody User user) {
+    public ResponseEntity<User> update(@PathVariable(name = "id") Long id, @RequestBody User user) {
         user.setId(id);
         User updatedUser = userService.update(user);
         return ResponseEntity.ok(updatedUser);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(@PathVariable("id") Long id) {
+    public ResponseEntity<User> getById(@PathVariable(name = "id") Long id) {
         User user = userService.getById(id);
         return ResponseEntity.ok(user);
     }
@@ -57,7 +57,7 @@ public class UserResource {
     }
 
     @GetMapping("/{id}/requests")
-    public ResponseEntity<List<Request>> listAllRequestsById(@PathVariable("id") Long id) {
+    public ResponseEntity<List<Request>> listAllRequestsById(@PathVariable(name = "id") Long id) {
         List<Request> requests = requestService.listAllByOwnerId(id);
         return ResponseEntity.ok(requests);
     }
