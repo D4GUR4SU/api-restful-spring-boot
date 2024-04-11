@@ -1,9 +1,12 @@
 package com.springcourse.domain;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.springcourse.enums.Role;
 
 import jakarta.persistence.Column;
@@ -26,6 +29,7 @@ import lombok.Setter;
 @Entity(name = "user")
 public class User implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -37,17 +41,21 @@ public class User implements Serializable {
 	
 	@Column(length = 75, nullable = false)
 	private String email;
-	
+
+	@Getter(onMethod_ = @__({@JsonIgnore}))
+	@Setter(onMethod_ = @__({@JsonProperty}))
 	@Column(length = 75, nullable = false)
 	private String password;
 	
 	@Column(length = 75, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	
+
+	@Getter(onMethod_ = @__({@JsonIgnore}))
 	@OneToMany(mappedBy = "owner")
 	private List<Request> requests = new ArrayList<>();
-	
+
+	@Getter(onMethod_ = @__({@JsonIgnore}))
 	@OneToMany(mappedBy = "owner")
 	private List<RequestStage> stages = new ArrayList<>();
 }
