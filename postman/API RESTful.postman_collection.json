@@ -15,13 +15,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{LOCALHOST}}/users/1",
+							"raw": "{{LOCALHOST}}/users/12",
 							"host": [
 								"{{LOCALHOST}}"
 							],
 							"path": [
 								"users",
-								"1"
+								"12"
 							]
 						}
 					},
@@ -171,13 +171,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{LOCALHOST}}/requests/2",
+							"raw": "{{LOCALHOST}}/requests/21",
 							"host": [
 								"{{LOCALHOST}}"
 							],
 							"path": [
 								"requests",
-								"2"
+								"21"
 							]
 						}
 					},
@@ -281,6 +281,24 @@
 							],
 							"path": [
 								"request-stages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET REQUEST STAGES BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCALHOST}}/request-stages/2",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"request-stages",
+								"2"
 							]
 						}
 					},

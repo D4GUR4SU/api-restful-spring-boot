@@ -3,6 +3,7 @@ package com.springcourse.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.springcourse.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,8 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
-	public User update(User user) {
+	public User update(User user, Long id) {
+		user.setId(id);
 		String hash = HashUtil.getSecureHash(user.getPassword());
 		user.setPassword(hash);
 
@@ -36,7 +38,7 @@ public class UserService {
 	
 	public User getById(Long id) {
 		Optional<User> result = userRepository.findById(id);
-		return result.get();
+    return result.orElseThrow(() -> new NotFoundException("There are not user with id: " + id));
 	}
 	
 	public List<User> listAll() {
@@ -47,6 +49,6 @@ public class UserService {
 		password = HashUtil.getSecureHash(password);
 		
 		Optional<User> result = userRepository.login(email, password);
-		return result.get();
+		return result.orElseThrow(() -> new NotFoundException("There are not user with this login."));
 	}
 }
