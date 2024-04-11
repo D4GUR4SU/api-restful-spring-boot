@@ -15,11 +15,15 @@ import com.springcourse.repository.RequestStageRepository;
 @Service
 public class RequestStageService {
 
+	private final RequestRepository requestRepository;
+	private final RequestStageRepository requestStageRepository;
+
 	@Autowired
-	private RequestStageRepository requestStageRepository;
-	
-	@Autowired
-	private RequestRepository requestRepository;
+	public RequestStageService(RequestRepository requestRepository,
+							   RequestStageRepository requestStageRepository) {
+		this.requestRepository = requestRepository;
+		this.requestStageRepository = requestStageRepository;
+	}
 	
 	public RequestStage save(RequestStage stage) {
 		stage.setRealizationDate(new Date());

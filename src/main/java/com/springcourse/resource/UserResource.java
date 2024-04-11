@@ -16,11 +16,14 @@ import java.util.List;
 @RequestMapping(value = "users")
 public class UserResource {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final RequestService requestService;
 
     @Autowired
-    private RequestService requestService;
+    public UserResource(UserService userService, RequestService requestService) {
+        this.userService = userService;
+        this.requestService = requestService;
+    }
 
     @PostMapping
     public ResponseEntity<User> save(@RequestBody User user) {

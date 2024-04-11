@@ -13,8 +13,12 @@ import java.util.List;
 @RequestMapping(value = "/requests")
 public class RequestResource {
 
+    private final RequestService requestService;
+
     @Autowired
-    private RequestService requestService;
+    public RequestResource(RequestService requestService) {
+        this.requestService = requestService;
+    }
 
     @PostMapping
     public ResponseEntity<Request> save(@RequestBody Request request) {

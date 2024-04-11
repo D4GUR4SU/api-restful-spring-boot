@@ -14,9 +14,13 @@ import com.springcourse.repository.RequestRepository;
 @Service
 public class RequestService {
 
+	private final RequestRepository requestRepository;
+
 	@Autowired
-	private RequestRepository requestRepository;
-	
+	public RequestService(RequestRepository requestRepository) {
+		this.requestRepository = requestRepository;
+	}
+
 	public Request save(Request request) {
 		request.setState(RequestState.OPEN);
 		request.setCreationDate(new Date());

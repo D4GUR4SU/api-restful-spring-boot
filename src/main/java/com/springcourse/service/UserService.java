@@ -12,9 +12,13 @@ import com.springcourse.service.util.HashUtil;
 
 @Service
 public class UserService {
-	
+
+	private final UserRepository userRepository;
+
 	@Autowired
-	private UserRepository userRepository;
+	public UserService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 	
 	public User save(User user) {
 		String hash = HashUtil.getSecureHash(user.getPassword());
