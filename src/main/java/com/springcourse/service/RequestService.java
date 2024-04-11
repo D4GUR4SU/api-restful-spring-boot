@@ -20,15 +20,12 @@ public class RequestService {
 	public Request save(Request request) {
 		request.setState(RequestState.OPEN);
 		request.setCreationDate(new Date());
-		
-		
-		Request createdRequest = requestRepository.save(request);
-		return createdRequest;
+
+		return requestRepository.save(request);
 	}
 	
 	public Request update(Request request) {
-		Request updatedRequest = requestRepository.save(request);
-		return updatedRequest;
+		return requestRepository.save(request);
 	}
 	
 	public Request getById(Long id) {
@@ -37,12 +34,10 @@ public class RequestService {
 	}
 	
 	public List<Request> listAll() {
-		List<Request> requests = requestRepository.findAll();
-		return requests;
+		return requestRepository.findAll();
 	}
 	
 	public List<Request> listAllByOwnerId(Long ownerId) {
-		List<Request> requests = requestRepository.findAllByOwnerId(ownerId);
-		return requests;
+		return requestRepository.findAllByOwnerId(ownerId);
 	}
 }

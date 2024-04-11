@@ -35,13 +35,10 @@ public class RequestStageService {
 	
 	public RequestStage getById(Long id) {		
 		Optional<RequestStage> result = requestStageRepository.findById(id);
-		
 		return result.get();
 	}
 	
-	public List<RequestStage> listAllByRequestId(Long requestId) {		
-		List<RequestStage> stages = requestStageRepository.findAllByRequestId(requestId);
-		
-		return stages;
+	public List<RequestStage> listAllByRequestId(Long requestId) {
+		return requestStageRepository.findAllByRequestId(requestId);
 	}
 }

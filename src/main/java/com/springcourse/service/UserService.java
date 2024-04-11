@@ -19,19 +19,15 @@ public class UserService {
 	public User save(User user) {
 		String hash = HashUtil.getSecureHash(user.getPassword());
 		user.setPassword(hash);
-		
-		User createdUser = userRepository.save(user);
-		
-		return createdUser;
+
+		return userRepository.save(user);
 	}
 	
 	public User update(User user) {
 		String hash = HashUtil.getSecureHash(user.getPassword());
 		user.setPassword(hash);
-		
-		User updatedUser = userRepository.save(user);
-		
-		return updatedUser;
+
+		return userRepository.save(user);
 	}
 	
 	public User getById(Long id) {
@@ -40,8 +36,7 @@ public class UserService {
 	}
 	
 	public List<User> listAll() {
-		List<User> users = userRepository.findAll();
-		return users;
+		return userRepository.findAll();
 	}
 	
 	public User login(String email, String password) {
@@ -50,6 +45,4 @@ public class UserService {
 		Optional<User> result = userRepository.login(email, password);
 		return result.get();
 	}
-	
 }
-;

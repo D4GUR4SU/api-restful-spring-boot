@@ -1,7 +1,9 @@
 package com.springcourse.resource;
 
+import com.springcourse.domain.Request;
 import com.springcourse.domain.User;
 import com.springcourse.dto.UserLoginDto;
+import com.springcourse.service.RequestService;
 import com.springcourse.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,9 @@ public class UserResource {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RequestService requestService;
 
     @PostMapping
     public ResponseEntity<User> save(@RequestBody User user) {
@@ -48,4 +53,9 @@ public class UserResource {
         return ResponseEntity.ok(loggedUser);
     }
 
+    @GetMapping("/{id}/requests")
+    public ResponseEntity<List<Request>> listAllRequestsById(@PathVariable("id") Long id) {
+        List<Request> requests = requestService.listAllByOwnerId(id);
+        return ResponseEntity.ok(requests);
+    }
 }
