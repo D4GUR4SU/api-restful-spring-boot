@@ -52,7 +52,7 @@ public class RequestResource {
 
     @GetMapping("/{id}/request-stages")
     public ResponseEntity<List<RequestStage>> listAllStagesById(@PathVariable(name = "id") Long id) {
-        List<RequestStage> request = requestStageService.listAllByRequestId(id);
-        return ResponseEntity.ok(request);
+        List<RequestStage> stages = requestStageService.listAllByRequestId(id);
+        return ResponseEntity.ok(stages);
     }
 }
