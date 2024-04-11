@@ -20,15 +20,13 @@ public class UserResource {
     @PostMapping
     public ResponseEntity<User> save(@RequestBody User user) {
         User createdUser = userService.save(user);
-
-    return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable("id") Long id, @RequestBody User user) {
         user.setId(id);
         User updatedUser = userService.update(user);
-
         return ResponseEntity.ok(updatedUser);
     }
 
@@ -47,7 +45,6 @@ public class UserResource {
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody UserLoginDto userLoginDto) {
         User loggedUser = userService.login(userLoginDto.getEmail(), userLoginDto.getPassword());
-
         return ResponseEntity.ok(loggedUser);
     }
 
